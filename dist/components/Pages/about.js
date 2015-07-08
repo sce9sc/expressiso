@@ -1,91 +1,83 @@
-"use strict";
+'use strict';
 
-var React = require("react");
-var ReactRouter = require("react-router");
+var React = require('react');
+var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var TabsActions = require('../PageComponents/Tabs/tabsActions');
 
 var AboutPage = React.createClass({
-    displayName: "AboutPage",
+    displayName: 'AboutPage',
 
+    onLinkClick: function onLinkClick(link) {
+        console.log(link);
+        TabsActions.addTabs(link);
+    },
     render: function render() {
         return React.createElement(
-            "div",
+            'div',
             null,
             React.createElement(
-                "section",
-                { className: "content-header" },
+                'section',
+                { className: 'content-header' },
                 React.createElement(
-                    "h1",
+                    'h1',
                     null,
-                    "About Page",
+                    'About Page',
                     React.createElement(
-                        "small",
+                        'small',
                         null,
-                        "it all starts here"
-                    )
-                ),
-                React.createElement(
-                    "ol",
-                    { className: "breadcrumb" },
-                    React.createElement(
-                        "li",
-                        null,
-                        React.createElement(
-                            Link,
-                            { to: "home" },
-                            " Home"
-                        )
-                    ),
-                    React.createElement(
-                        "li",
-                        { className: "active" },
-                        "About"
+                        'it all starts here'
                     )
                 )
             ),
             React.createElement(
-                "section",
-                { className: "content" },
+                'section',
+                { className: 'content' },
                 React.createElement(
-                    "div",
+                    'div',
                     null,
-                    "sadad"
+                    'sadad'
                 ),
                 React.createElement(
-                    "div",
-                    { className: "box" },
+                    'div',
+                    { className: 'box' },
                     React.createElement(
-                        "div",
-                        { className: "box-header with-border" },
+                        'div',
+                        { className: 'box-header with-border' },
                         React.createElement(
-                            "h3",
-                            { className: "box-title" },
-                            "Title"
+                            'h3',
+                            { className: 'box-title' },
+                            'Title'
                         ),
                         React.createElement(
-                            "div",
-                            { className: "box-tools pull-right" },
+                            'div',
+                            { className: 'box-tools pull-right' },
                             React.createElement(
-                                "button",
-                                { className: "btn btn-box-tool", "data-widget": "collapse", "data-toggle": "tooltip", title: "Collapse" },
-                                React.createElement("i", { className: "fa fa-minus" })
+                                'button',
+                                { className: 'btn btn-box-tool', 'data-widget': 'collapse', 'data-toggle': 'tooltip', title: 'Collapse' },
+                                React.createElement('i', { className: 'fa fa-minus' })
                             ),
                             React.createElement(
-                                "button",
-                                { className: "btn btn-box-tool", "data-widget": "remove", "data-toggle": "tooltip", title: "Remove" },
-                                React.createElement("i", { className: "fa fa-times" })
+                                'button',
+                                { className: 'btn btn-box-tool', 'data-widget': 'remove', 'data-toggle': 'tooltip', title: 'Remove' },
+                                React.createElement('i', { className: 'fa fa-times' })
                             )
                         )
                     ),
                     React.createElement(
-                        "div",
-                        { className: "box-body" },
-                        "Start creating your amazing application!"
+                        'div',
+                        { className: 'box-body' },
+                        'Start creating your amazing application!',
+                        React.createElement(
+                            Link,
+                            { to: 'dashboard', onClick: this.onLinkClick.bind(this, { name: 'dashboard', link: '/dashboard' }) },
+                            'Click me to go to dashboard'
+                        )
                     ),
                     React.createElement(
-                        "div",
-                        { className: "box-footer" },
-                        "Footer"
+                        'div',
+                        { className: 'box-footer' },
+                        'Footer'
                     )
                 )
             )

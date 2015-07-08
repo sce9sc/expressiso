@@ -1,6 +1,8 @@
 var React = require("react")
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var TabsActions = require('../PageComponents/Tabs/tabsActions');
+
 
 var DashBoardPage = React.createClass({
     timeoutFn:function(){
@@ -20,6 +22,7 @@ var DashBoardPage = React.createClass({
        console.log('DashBoard-componentWillMount');
     },
     componentWillUnmount: function() {
+        //TabsActions.removeTabs({name:'dashboard'})
         console.log('DashBoard-componentWillUnmount');
     },
     handleClick : function(event){
@@ -39,10 +42,6 @@ var DashBoardPage = React.createClass({
                         DashBoard
                         <small>it all starts here</small>
                     </h1>
-                    <ol className="breadcrumb">
-                        <li><Link to="home"> Home</Link></li>
-                        <li className="active"><Link to="home"> DashBoard</Link></li>
-                    </ol>
                 </section>
 
                 <section className="content">

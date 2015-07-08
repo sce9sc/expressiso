@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var TabsActions = require('../Tabs/tabsActions');
 
 var MenuBtn = React.createClass({
     displayName: 'MenuBtn',
@@ -13,8 +14,8 @@ var MenuBtn = React.createClass({
     toggleActiveState: function toggleActiveState(event) {
         this.setState({ treeActiveState: !this.state.treeActiveState });
     },
-    testClick: function testClick(link) {
-        console.log('you clicked a link : ' + link);
+    linkClick: function linkClick(link) {
+        TabsActions.setTabs({ name: link, link: '/' + link });
     },
     render: function render() {
         var name = this.props.name;
@@ -25,7 +26,7 @@ var MenuBtn = React.createClass({
             { className: focus },
             React.createElement(
                 Link,
-                { onClick: this.testClick.bind(this, link), to: link },
+                { onClick: this.linkClick.bind(this, link), to: link },
                 React.createElement('i', { className: 'fa ' + this.props.className }),
                 ' ',
                 React.createElement(

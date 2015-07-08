@@ -106,23 +106,23 @@
 	var DefaultRoute = ReactRouter.DefaultRoute;
 
 	var App = __webpack_require__(196);
-	var NotFound = __webpack_require__(228);
+	var NotFound = __webpack_require__(230);
 	//var About = require('./components/about');
 	//var Dashboard = require('./components/dashboard');
 
 	var alt = __webpack_require__(201);
-	var Iso = __webpack_require__(229);
+	var Iso = __webpack_require__(231);
 
 	var routes = React.createElement(
 	    Route,
 	    { name: 'home', path: '/', handler: App },
-	    React.createElement(Route, { name: 'dashboard', path: 'dashboard', handler: __webpack_require__(231) }),
-	    React.createElement(Route, { name: 'about', path: 'about', handler: __webpack_require__(234) }),
-	    React.createElement(Route, { name: 'table', path: 'table', handler: __webpack_require__(236) }),
-	    React.createElement(Route, { name: 'charts', path: 'charts', handler: __webpack_require__(279) }),
-	    React.createElement(Route, { name: 'modal', path: 'modal', handler: __webpack_require__(281) }),
-	    React.createElement(Route, { name: 'sortable', path: 'sortable', handler: __webpack_require__(307) }),
-	    React.createElement(DefaultRoute, { name: 'default', handler: __webpack_require__(231) }),
+	    React.createElement(Route, { name: 'dashboard', path: 'dashboard', handler: __webpack_require__(233) }),
+	    React.createElement(Route, { name: 'about', path: 'about', handler: __webpack_require__(236) }),
+	    React.createElement(Route, { name: 'table', path: 'table', handler: __webpack_require__(238) }),
+	    React.createElement(Route, { name: 'charts', path: 'charts', handler: __webpack_require__(281) }),
+	    React.createElement(Route, { name: 'modal', path: 'modal', handler: __webpack_require__(283) }),
+	    React.createElement(Route, { name: 'sortable', path: 'sortable', handler: __webpack_require__(309) }),
+	    React.createElement(DefaultRoute, { name: 'default', handler: __webpack_require__(233) }),
 	    React.createElement(NotFoundRoute, { handler: NotFound })
 	);
 
@@ -21491,10 +21491,10 @@
 
 	var React = __webpack_require__(1),
 	    Menu = __webpack_require__(197),
-	    Footer = __webpack_require__(223),
-	    SideBar = __webpack_require__(224),
-	    Header = __webpack_require__(225),
-	    Tabs = __webpack_require__(227);
+	    Footer = __webpack_require__(224),
+	    SideBar = __webpack_require__(225),
+	    Header = __webpack_require__(226),
+	    Tabs = __webpack_require__(228);
 
 	var Router = __webpack_require__(157),
 	    RouteHandler = Router.RouteHandler,
@@ -21567,9 +21567,9 @@
 
 	//Import UI
 	var TreeView = __webpack_require__(218);
-	var MenuBtn = __webpack_require__(220);
-	var MenuUserInfo = __webpack_require__(221);
-	var MenuSearch = __webpack_require__(222);
+	var MenuBtn = __webpack_require__(221);
+	var MenuUserInfo = __webpack_require__(222);
+	var MenuSearch = __webpack_require__(223);
 
 	var Menu = React.createClass({
 	    displayName: 'Menu',
@@ -24177,13 +24177,16 @@
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(157);
 	var Link = ReactRouter.Link;
-	//var createActiveRouteComponent = require('react-router-active-component');
+	var TabsActions = __webpack_require__(220);
 
 	var MenuBtn = React.createClass({
 	    displayName: 'MenuBtn',
 
 	    getInitialState: function getInitialState() {
 	        return { treeActiveState: false };
+	    },
+	    linkClick: function linkClick(link) {
+	        TabsActions.setTabs({ name: link, link: '/' + link });
 	    },
 	    render: function render() {
 	        var treestate = this.state.treeActiveState ? 'active' : '';
@@ -24194,7 +24197,7 @@
 	            { className: treestate },
 	            React.createElement(
 	                Link,
-	                { to: link },
+	                { onClick: this.linkClick.bind(this, link), to: link },
 	                React.createElement('i', { className: 'fa fa-circle-o' }),
 	                link
 	            )
@@ -24210,9 +24213,39 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _altInstance = __webpack_require__(201);
+
+	var _altInstance2 = _interopRequireDefault(_altInstance);
+
+	var TabsActions = function TabsActions() {
+	    _classCallCheck(this, TabsActions);
+
+	    this.generateActions('addTabs');
+	    this.generateActions('removeTabs');
+	    this.generateActions('setTabs');
+	};
+
+	exports['default'] = _altInstance2['default'].createActions(TabsActions);
+	module.exports = exports['default'];
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(157);
 	var Link = ReactRouter.Link;
+	var TabsActions = __webpack_require__(220);
 
 	var MenuBtn = React.createClass({
 	    displayName: 'MenuBtn',
@@ -24223,8 +24256,8 @@
 	    toggleActiveState: function toggleActiveState(event) {
 	        this.setState({ treeActiveState: !this.state.treeActiveState });
 	    },
-	    testClick: function testClick(link) {
-	        console.log('you clicked a link : ' + link);
+	    linkClick: function linkClick(link) {
+	        TabsActions.setTabs({ name: link, link: '/' + link });
 	    },
 	    render: function render() {
 	        var name = this.props.name;
@@ -24235,7 +24268,7 @@
 	            { className: focus },
 	            React.createElement(
 	                Link,
-	                { onClick: this.testClick.bind(this, link), to: link },
+	                { onClick: this.linkClick.bind(this, link), to: link },
 	                React.createElement('i', { className: 'fa ' + this.props.className }),
 	                ' ',
 	                React.createElement(
@@ -24257,7 +24290,7 @@
 	module.exports = MenuBtn;
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24305,7 +24338,7 @@
 	module.exports = MenuUserInfo;
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24347,7 +24380,7 @@
 	module.exports = MenuSearch;
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24390,7 +24423,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24745,13 +24778,13 @@
 	module.exports = SideBar;
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var HeaderNav = __webpack_require__(226);
+	var HeaderNav = __webpack_require__(227);
 
 	var Header = React.createClass({
 	    displayName: "Header",
@@ -24792,7 +24825,7 @@
 	module.exports = Header;
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25150,40 +25183,143 @@
 	module.exports = HeaderNav;
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(157);
 	var Link = ReactRouter.Link;
 	var State = ReactRouter.State;
+	var TabsActions = __webpack_require__(220);
+	var TabsStore = __webpack_require__(229);
 
 	var Tabs = React.createClass({
-	    displayName: "Tabs",
+	    displayName: 'Tabs',
 
 	    mixins: [State],
 
 	    getInitialState: function getInitialState() {
-	        var name = this.getRoutes()[1].name;
-
-	        return { tabs: [name] };
+	        var route = this.getRoutes()[1];
+	        var tab = { name: route.name, link: route.path };
+	        TabsActions.addTabs(tab);
+	        return { tabs: [tab] };
 	    },
+	    _onChange: function _onChange() {
+	        console.log('_onchange');
+	        var tabs = TabsStore.getState().tabs;
+	        this.setState({ tabs: tabs });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        //$(this.getDOMNode())
+	        TabsStore.listen(this._onChange);
+	        //window.addEventListener('resize', this.handleResize);
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+	        TabsStore.unlisten(this._onChange);
+	        // window.removeEventListener('resize', this.handleResize);
+	    },
+
 	    render: function render() {
-	        var name = this.state.tabs[0];
+	        var tabs = this.state.tabs;
+
+	        var tabLinks = tabs.map(function (tab, index) {
+	            return React.createElement(
+	                'li',
+	                { key: tab.name },
+	                React.createElement(
+	                    Link,
+	                    { to: tab.link },
+	                    tab.name
+	                )
+	            );
+	        });
+
 	        return React.createElement(
-	            "div",
-	            null,
-	            name
+	            'ol',
+	            { className: 'breadcrumb' },
+	            tabLinks
 	        );
 	    }
 	});
 
 	module.exports = Tabs;
+	//console.log(menuActive)
 
 /***/ },
-/* 228 */
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _altInstance = __webpack_require__(201);
+
+	var _altInstance2 = _interopRequireDefault(_altInstance);
+
+	var _tabsActions = __webpack_require__(220);
+
+	var _tabsActions2 = _interopRequireDefault(_tabsActions);
+
+	var TabsStore = (function () {
+	    function TabsStore() {
+	        _classCallCheck(this, TabsStore);
+
+	        this.bindListeners({
+	            addTabs: _tabsActions2['default'].addTabs,
+	            removeTabs: _tabsActions2['default'].removeTabs,
+	            setTabs: _tabsActions2['default'].setTabs
+	        });
+	        this.tabs = [];
+	    }
+
+	    _createClass(TabsStore, [{
+	        key: 'setTabs',
+	        value: function setTabs(tab) {
+	            this.tabs = [tab];
+	        }
+	    }, {
+	        key: 'addTabs',
+	        value: function addTabs(tab) {
+	            for (var i = 0; i < this.tabs.length; i++) {
+	                if (this.tabs[i].name == tab.name) {
+	                    return;
+	                }
+	            }
+	            this.tabs.push({ name: tab.name, link: tab.link });
+	        }
+	    }, {
+	        key: 'removeTabs',
+	        value: function removeTabs(tab) {
+	            for (var n = 0; n < this.tabs.length; n++) {
+	                if (this.tabs[n].name == tab.name) {
+	                    var removedObject = this.tabs.splice(n, 1);
+	                    removedObject = null;
+	                    break;
+	                }
+	            }
+	        }
+	    }]);
+
+	    return TabsStore;
+	})();
+
+	exports['default'] = _altInstance2['default'].createStore(TabsStore, 'TabsStore');
+	module.exports = exports['default'];
+
+/***/ },
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25292,7 +25428,7 @@
 	module.exports = NotFoundPage;
 
 /***/ },
-/* 229 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25307,7 +25443,7 @@
 	  }
 	};
 
-	var escapeTextForBrowser = __webpack_require__(230);
+	var escapeTextForBrowser = __webpack_require__(232);
 
 	var each = function each(x, f) {
 	  return Array.prototype.forEach.call(x, f);
@@ -25422,7 +25558,7 @@
 	module.exports = Iso;
 
 /***/ },
-/* 230 */
+/* 232 */
 /***/ function(module, exports) {
 
 	/*!
@@ -25453,7 +25589,7 @@
 	}
 
 /***/ },
-/* 231 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25462,7 +25598,7 @@
 	    statics: {
 	        willTransitionTo: function(transition, params, query, callback) {
 	            __webpack_require__.e/* nsure */(1, function() {
-	                component = __webpack_require__(233);
+	                component = __webpack_require__(235);
 	                if (component.willTransitionTo) { 
 	                    component.willTransitionTo(transition, params, query, callback);
 	                    if (component.willTransitionTo.length < 4) {
@@ -25490,20 +25626,20 @@
 	    loadComponent: function(callback) {
 	        if(!component) {
 	            __webpack_require__.e/* nsure */(1/* duplicate */, function() {
-	                component = __webpack_require__(233);
+	                component = __webpack_require__(235);
 	                if(callback) callback(component);
 	            });
 	        } else if(callback) callback(component);
 	        return component;
 	    }
 	};
-	var mixinReactProxy = __webpack_require__(232);
+	var mixinReactProxy = __webpack_require__(234);
 	mixinReactProxy(React, desc);
 	module.exports = React.createClass(desc);
 	module.exports.Mixin = desc;
 
 /***/ },
-/* 232 */
+/* 234 */
 /***/ function(module, exports) {
 
 	
@@ -25543,8 +25679,8 @@
 	};
 
 /***/ },
-/* 233 */,
-/* 234 */
+/* 235 */,
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25553,7 +25689,7 @@
 	    statics: {
 	        willTransitionTo: function(transition, params, query, callback) {
 	            __webpack_require__.e/* nsure */(2, function() {
-	                component = __webpack_require__(235);
+	                component = __webpack_require__(237);
 	                if (component.willTransitionTo) { 
 	                    component.willTransitionTo(transition, params, query, callback);
 	                    if (component.willTransitionTo.length < 4) {
@@ -25581,21 +25717,21 @@
 	    loadComponent: function(callback) {
 	        if(!component) {
 	            __webpack_require__.e/* nsure */(2/* duplicate */, function() {
-	                component = __webpack_require__(235);
+	                component = __webpack_require__(237);
 	                if(callback) callback(component);
 	            });
 	        } else if(callback) callback(component);
 	        return component;
 	    }
 	};
-	var mixinReactProxy = __webpack_require__(232);
+	var mixinReactProxy = __webpack_require__(234);
 	mixinReactProxy(React, desc);
 	module.exports = React.createClass(desc);
 	module.exports.Mixin = desc;
 
 /***/ },
-/* 235 */,
-/* 236 */
+/* 237 */,
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25604,7 +25740,7 @@
 	    statics: {
 	        willTransitionTo: function(transition, params, query, callback) {
 	            __webpack_require__.e/* nsure */(3, function() {
-	                component = __webpack_require__(237);
+	                component = __webpack_require__(239);
 	                if (component.willTransitionTo) { 
 	                    component.willTransitionTo(transition, params, query, callback);
 	                    if (component.willTransitionTo.length < 4) {
@@ -25632,21 +25768,19 @@
 	    loadComponent: function(callback) {
 	        if(!component) {
 	            __webpack_require__.e/* nsure */(3/* duplicate */, function() {
-	                component = __webpack_require__(237);
+	                component = __webpack_require__(239);
 	                if(callback) callback(component);
 	            });
 	        } else if(callback) callback(component);
 	        return component;
 	    }
 	};
-	var mixinReactProxy = __webpack_require__(232);
+	var mixinReactProxy = __webpack_require__(234);
 	mixinReactProxy(React, desc);
 	module.exports = React.createClass(desc);
 	module.exports.Mixin = desc;
 
 /***/ },
-/* 237 */,
-/* 238 */,
 /* 239 */,
 /* 240 */,
 /* 241 */,
@@ -25687,7 +25821,9 @@
 /* 276 */,
 /* 277 */,
 /* 278 */,
-/* 279 */
+/* 279 */,
+/* 280 */,
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25696,7 +25832,7 @@
 	    statics: {
 	        willTransitionTo: function(transition, params, query, callback) {
 	            __webpack_require__.e/* nsure */(4, function() {
-	                component = __webpack_require__(280);
+	                component = __webpack_require__(282);
 	                if (component.willTransitionTo) { 
 	                    component.willTransitionTo(transition, params, query, callback);
 	                    if (component.willTransitionTo.length < 4) {
@@ -25724,21 +25860,21 @@
 	    loadComponent: function(callback) {
 	        if(!component) {
 	            __webpack_require__.e/* nsure */(4/* duplicate */, function() {
-	                component = __webpack_require__(280);
+	                component = __webpack_require__(282);
 	                if(callback) callback(component);
 	            });
 	        } else if(callback) callback(component);
 	        return component;
 	    }
 	};
-	var mixinReactProxy = __webpack_require__(232);
+	var mixinReactProxy = __webpack_require__(234);
 	mixinReactProxy(React, desc);
 	module.exports = React.createClass(desc);
 	module.exports.Mixin = desc;
 
 /***/ },
-/* 280 */,
-/* 281 */
+/* 282 */,
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25747,7 +25883,7 @@
 	    statics: {
 	        willTransitionTo: function(transition, params, query, callback) {
 	            __webpack_require__.e/* nsure */(5, function() {
-	                component = __webpack_require__(282);
+	                component = __webpack_require__(284);
 	                if (component.willTransitionTo) { 
 	                    component.willTransitionTo(transition, params, query, callback);
 	                    if (component.willTransitionTo.length < 4) {
@@ -25775,21 +25911,19 @@
 	    loadComponent: function(callback) {
 	        if(!component) {
 	            __webpack_require__.e/* nsure */(5/* duplicate */, function() {
-	                component = __webpack_require__(282);
+	                component = __webpack_require__(284);
 	                if(callback) callback(component);
 	            });
 	        } else if(callback) callback(component);
 	        return component;
 	    }
 	};
-	var mixinReactProxy = __webpack_require__(232);
+	var mixinReactProxy = __webpack_require__(234);
 	mixinReactProxy(React, desc);
 	module.exports = React.createClass(desc);
 	module.exports.Mixin = desc;
 
 /***/ },
-/* 282 */,
-/* 283 */,
 /* 284 */,
 /* 285 */,
 /* 286 */,
@@ -25813,7 +25947,9 @@
 /* 304 */,
 /* 305 */,
 /* 306 */,
-/* 307 */
+/* 307 */,
+/* 308 */,
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25822,7 +25958,7 @@
 	    statics: {
 	        willTransitionTo: function(transition, params, query, callback) {
 	            __webpack_require__.e/* nsure */(6, function() {
-	                component = __webpack_require__(308);
+	                component = __webpack_require__(310);
 	                if (component.willTransitionTo) { 
 	                    component.willTransitionTo(transition, params, query, callback);
 	                    if (component.willTransitionTo.length < 4) {
@@ -25850,14 +25986,14 @@
 	    loadComponent: function(callback) {
 	        if(!component) {
 	            __webpack_require__.e/* nsure */(6/* duplicate */, function() {
-	                component = __webpack_require__(308);
+	                component = __webpack_require__(310);
 	                if(callback) callback(component);
 	            });
 	        } else if(callback) callback(component);
 	        return component;
 	    }
 	};
-	var mixinReactProxy = __webpack_require__(232);
+	var mixinReactProxy = __webpack_require__(234);
 	mixinReactProxy(React, desc);
 	module.exports = React.createClass(desc);
 	module.exports.Mixin = desc;

@@ -63,7 +63,7 @@ router.get('*', function(req, res) {
 
 
 try {
-    console.log(Alt.default)
+    //console.log(Alt.default)
     Alt.bootstrap(JSON.stringify({MenuStore:{menu:{active: "test",menuBtns:menuBtns}}}));
     var iso = new Iso();
 

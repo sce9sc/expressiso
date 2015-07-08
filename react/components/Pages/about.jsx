@@ -1,8 +1,15 @@
 var React = require("react")
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var TabsActions = require('../PageComponents/Tabs/tabsActions');
+
 
 var AboutPage = React.createClass({
+
+    onLinkClick:function(link){
+        console.log(link);
+        TabsActions.addTabs(link);
+    },
     render() {
         return (
             <div>
@@ -11,10 +18,6 @@ var AboutPage = React.createClass({
                         About Page
                         <small>it all starts here</small>
                     </h1>
-                    <ol className="breadcrumb">
-                        <li><Link to="home"> Home</Link></li>
-                        <li className="active">About</li>
-                    </ol>
                 </section>
 
                 <section className="content">
@@ -30,6 +33,8 @@ var AboutPage = React.createClass({
                         </div>
                         <div className="box-body">
                             Start creating your amazing application!
+                            <Link to="dashboard" onClick={this.onLinkClick.bind(this,{name:'dashboard',link:'/dashboard'})}>Click me to go to dashboard</Link>
+
                         </div>
                         <div className="box-footer">
                             Footer

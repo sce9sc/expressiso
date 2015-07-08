@@ -3,13 +3,16 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-//var createActiveRouteComponent = require('react-router-active-component');
+var TabsActions = require('../Tabs/tabsActions');
 
 var MenuBtn = React.createClass({
     displayName: 'MenuBtn',
 
     getInitialState: function getInitialState() {
         return { treeActiveState: false };
+    },
+    linkClick: function linkClick(link) {
+        TabsActions.setTabs({ name: link, link: '/' + link });
     },
     render: function render() {
         var treestate = this.state.treeActiveState ? 'active' : '';
@@ -20,7 +23,7 @@ var MenuBtn = React.createClass({
             { className: treestate },
             React.createElement(
                 Link,
-                { to: link },
+                { onClick: this.linkClick.bind(this, link), to: link },
                 React.createElement('i', { className: 'fa fa-circle-o' }),
                 link
             )

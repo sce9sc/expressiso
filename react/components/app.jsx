@@ -3,7 +3,7 @@ var React = require("react"),
     Footer = require("./footer"),
     SideBar = require("./sidebar"),
     Header = require("./header"),
-    Tabs = require("./PageComponents/tabs");
+    Tabs = require("./PageComponents/Tabs/tabs");
 
 var Router = require('react-router')
     , RouteHandler = Router.RouteHandler
