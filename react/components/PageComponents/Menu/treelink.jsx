@@ -11,7 +11,7 @@ var MenuBtn = React.createClass({
         return {treeActiveState:false};
     },
     linkClick:function(link){
-        TabsActions.setTabs({name:link,link:'/'+link})
+        TabsActions.setTabs({name:link,link:'/'+link,active:true})
     },
     render() {
         var treestate = this.state.treeActiveState?'active':"";

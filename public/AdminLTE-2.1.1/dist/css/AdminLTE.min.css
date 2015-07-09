@@ -49,3 +49,33 @@ li.pagify-next {
     position: absolute;
     top: 20px;
 }
+
+/*Tab Menu*/
+.tabMenu {
+    margin: 0;
+    background-color: #374850;
+}
+.tabMenu a {
+    color: white;
+    text-decoration: none;
+}
+
+.tabMenu .active a {
+    color: black;
+}
+.tabMenu ol {
+    list-style: none;
+    padding: 0px;
+    margin: auto;
+}
+
+.tabMenu li.active {
+    background-color: #ecf0f5;
+    color:black;
+}
+
+.tabMenu li {
+    float: left;
+    margin: 0;
+    padding: 10px;
+}

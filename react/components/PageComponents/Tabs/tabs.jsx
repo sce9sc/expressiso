@@ -11,7 +11,7 @@ var Tabs = React.createClass({
 
     getInitialState: function() {
         var route = this.getRoutes()[1];
-        var tab= {name:route.name,link:route.path,params:{}};
+        var tab= {name:route.name,link:route.path,params:{},active:true};
         var params = this.getParams()
         if(params) {
             tab.params = params
@@ -39,21 +39,27 @@ var Tabs = React.createClass({
         TabsStore.unlisten(this._onChange);
         // window.removeEventListener('resize', this.handleResize);
     },
-
+    setActive:function(tab){
+        TabsActions.setActive(tab);
+    },
     render() {
         var tabs = this.state.tabs;
-
+        var setActive = this.setActive
+        var _this = this;
         var tabLinks = tabs.map(function(tab,index) {
-
-            return (<li key={tab.name}>
-                    <Link to={tab.link} params={tab.params} >{tab.name}</Link>
+            var active = tab.active?"active":"";
+            return (<li key={tab.name} className={active}>
+                    <Link onClick={setActive.bind(_this,tab)} to={tab.link} params={tab.params} >{tab.name}</Link>
                     </li>)
-            })
+        })
+
 
          return (
-             <ol className="breadcrumb">
-                {tabLinks}
-            </ol>
+             <div className="tabMenu clearfix">
+                 <ol className="clearfix">
+                    {tabLinks}
+                 </ol>
+             </div>
 
         );
     }

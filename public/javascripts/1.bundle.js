@@ -103,7 +103,7 @@ webpackJsonp([1],{
 	                        React.createElement('input', { type: 'text', className: 'testInput', onChange: this.handleChange, value: aboutCurrentData }),
 	                        React.createElement(
 	                            Link,
-	                            { to: 'aboutOverview', params: { name: 'testParam' }, onClick: this.onLinkClick.bind(this, { name: 'aboutOverview', link: '/aboutOverview/:name', params: { name: 'testParam' } }) },
+	                            { to: 'aboutOverview', params: { name: 'testParam' }, onClick: this.onLinkClick.bind(this, { name: 'aboutOverview', link: '/aboutOverview/:name', params: { name: 'testParam' }, active: true }) },
 	                            'Click me to go to dashboard'
 	                        )
 	                    ),

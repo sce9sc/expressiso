@@ -52,7 +52,7 @@ var AboutPage = React.createClass({
                         </div>
                         <div className="box-body">
                             <input type="text" className="testInput" onChange={this.handleChange} value={aboutCurrentData} />
-                            <Link to="aboutOverview" params={{name:"testParam"}} onClick={this.onLinkClick.bind(this,{name:'aboutOverview',link:'/aboutOverview/:name',params:{name:"testParam"}})}>Click me to go to dashboard</Link>
+                            <Link to="aboutOverview" params={{name:"testParam"}} onClick={this.onLinkClick.bind(this,{name:'aboutOverview',link:'/aboutOverview/:name',params:{name:"testParam"},active:true})}>Click me to go to dashboard</Link>
 
                         </div>
                         <div className="box-footer">

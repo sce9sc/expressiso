@@ -15,7 +15,7 @@ var MenuBtn = React.createClass({
         this.setState({ treeActiveState: !this.state.treeActiveState });
     },
     linkClick: function linkClick(link) {
-        TabsActions.setTabs({ name: link, link: '/' + link });
+        TabsActions.setTabs({ name: link, link: '/' + link, active: true });
     },
     render: function render() {
         var name = this.props.name;

@@ -23642,7 +23642,7 @@
 	var TabsActions = function TabsActions() {
 	    _classCallCheck(this, TabsActions);
 
-	    this.generateActions('addTabs', 'removeTabs', 'setTabs');
+	    this.generateActions('addTabs', 'removeTabs', 'setTabs', 'setActive');
 	};
 
 	exports['default'] = _altInstance2['default'].createActions(TabsActions);
@@ -24307,7 +24307,7 @@
 	        return { treeActiveState: false };
 	    },
 	    linkClick: function linkClick(link) {
-	        TabsActions.setTabs({ name: link, link: '/' + link });
+	        TabsActions.setTabs({ name: link, link: '/' + link, active: true });
 	    },
 	    render: function render() {
 	        var treestate = this.state.treeActiveState ? 'active' : '';
@@ -24349,7 +24349,7 @@
 	        this.setState({ treeActiveState: !this.state.treeActiveState });
 	    },
 	    linkClick: function linkClick(link) {
-	        TabsActions.setTabs({ name: link, link: '/' + link });
+	        TabsActions.setTabs({ name: link, link: '/' + link, active: true });
 	    },
 	    render: function render() {
 	        var name = this.props.name;
@@ -25294,7 +25294,7 @@
 
 	    getInitialState: function getInitialState() {
 	        var route = this.getRoutes()[1];
-	        var tab = { name: route.name, link: route.path, params: {} };
+	        var tab = { name: route.name, link: route.path, params: {}, active: true };
 	        var params = this.getParams();
 	        if (params) {
 	            tab.params = params;
@@ -25318,27 +25318,34 @@
 	        TabsStore.unlisten(this._onChange);
 	        // window.removeEventListener('resize', this.handleResize);
 	    },
-
+	    setActive: function setActive(tab) {
+	        TabsActions.setActive(tab);
+	    },
 	    render: function render() {
 	        var tabs = this.state.tabs;
-
+	        var setActive = this.setActive;
+	        var _this = this;
 	        var tabLinks = tabs.map(function (tab, index) {
-
+	            var active = tab.active ? 'active' : '';
 	            return React.createElement(
 	                'li',
-	                { key: tab.name },
+	                { key: tab.name, className: active },
 	                React.createElement(
 	                    Link,
-	                    { to: tab.link, params: tab.params },
+	                    { onClick: setActive.bind(_this, tab), to: tab.link, params: tab.params },
 	                    tab.name
 	                )
 	            );
 	        });
 
 	        return React.createElement(
-	            'ol',
-	            { className: 'breadcrumb' },
-	            tabLinks
+	            'div',
+	            { className: 'tabMenu clearfix' },
+	            React.createElement(
+	                'ol',
+	                { className: 'clearfix' },
+	                tabLinks
+	            )
 	        );
 	    }
 	});
@@ -25377,12 +25384,23 @@
 	        this.bindListeners({
 	            addTabs: _tabsActions2['default'].addTabs,
 	            removeTabs: _tabsActions2['default'].removeTabs,
-	            setTabs: _tabsActions2['default'].setTabs
+	            setTabs: _tabsActions2['default'].setTabs,
+	            setActive: _tabsActions2['default'].setActive
 	        });
 	        this.tabs = [];
 	    }
 
 	    _createClass(TabsStore, [{
+	        key: 'setActive',
+	        value: function setActive(tab) {
+	            for (var n = 0; n < this.tabs.length; n++) {
+	                this.tabs[n].active = false;
+	                if (this.tabs[n].name == tab.name) {
+	                    this.tabs[n].active = true;
+	                }
+	            }
+	        }
+	    }, {
 	        key: 'setTabs',
 	        value: function setTabs(tab) {
 	            this.tabs = [tab];
@@ -25390,14 +25408,19 @@
 	    }, {
 	        key: 'addTabs',
 	        value: function addTabs(tab) {
-	            for (var i = 0; i < this.tabs.length; i++) {
-	                if (this.tabs[i].name == tab.name) {
-	                    return;
-	                }
-	            }
+	            var exists = false;
 	            for (var i = 0; i < this.tabs.length; i++) {
 	                this.tabs[i].active = false;
+	                if (this.tabs[i].name == tab.name) {
+	                    this.tabs[i].active = true;
+	                    exists = true;
+	                }
 	            }
+
+	            if (exists) {
+	                return;
+	            }
+
 	            this.tabs.push({ name: tab.name, link: tab.link, params: tab.params, active: true });
 	        }
 	    }, {
