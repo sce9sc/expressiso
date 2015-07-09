@@ -1,7 +1,7 @@
 var React = require("react")
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-var TabsActions = require('../PageComponents/Tabs/tabsActions');
+//var TabsActions = require('../PageComponents/Tabs/tabsActions');
 
 
 var DashBoardPage = React.createClass({

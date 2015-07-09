@@ -9,21 +9,20 @@ var DefaultRoute = ReactRouter.DefaultRoute;
 
 var App = require('./components/app');
 var NotFound = require('./components/Pages/notfound');
-//var About = require('./components/about');
-//var Dashboard = require('./components/dashboard');
 
 var alt = require('./components/altInstance');
 var Iso = require('iso');
 
 var routes = (
     <Route name="home" path="/" handler={App}>
-        <Route name="dashboard" path="dashboard" handler={require('react-router-proxy!./components/Pages/dashboard.jsx')}/>
-        <Route name="about" path="about" handler={require('react-router-proxy!./components/Pages/about.jsx')}/>
-        <Route  name="table"  path="table" handler={require('react-router-proxy!./components/Pages/table.jsx')}/>
-        <Route  name="charts"  path="charts" handler={require('react-router-proxy!./components/Pages/charts.jsx')}/>
-        <Route  name="modal"  path="modal" handler={require('react-router-proxy!./components/Pages/modal.jsx')}/>
-        <Route  name="sortable"  path="sortable" handler={require('react-router-proxy!./components/Pages/sortable.jsx')}/>
-        <DefaultRoute name="default" handler={require('react-router-proxy!./components/Pages/dashboard.jsx')}/>
+        <Route name="dashboard" path="/dashboard" handler={require('react-router-proxy!./components/Pages/Dashboard/dashboard.jsx')}/>
+        <Route name="about" path="/about" handler={require('react-router-proxy!./components/Pages/About/about.jsx')}/>
+        <Route name="aboutOverview" path="/aboutOverview/:name" handler={require('react-router-proxy!./components/Pages/AboutOverview/aboutOverview.jsx')}/>
+        <Route  name="table"  path="/table" handler={require('react-router-proxy!./components/Pages/table.jsx')}/>
+        <Route  name="charts"  path="/charts" handler={require('react-router-proxy!./components/Pages/charts.jsx')}/>
+        <Route  name="modal"  path="/modal" handler={require('react-router-proxy!./components/Pages/modal.jsx')}/>
+        <Route  name="sortable"  path="/sortable" handler={require('react-router-proxy!./components/Pages/sortable.jsx')}/>
+        <DefaultRoute name="default" handler={require('react-router-proxy!./components/Pages/Dashboard/dashboard.jsx')}/>
         <NotFoundRoute handler={NotFound}/>
     </Route>
 );

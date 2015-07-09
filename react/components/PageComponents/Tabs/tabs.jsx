@@ -11,7 +11,12 @@ var Tabs = React.createClass({
 
     getInitialState: function() {
         var route = this.getRoutes()[1];
-        var tab= {name:route.name,link:route.path};
+        var tab= {name:route.name,link:route.path,params:{}};
+        var params = this.getParams()
+        if(params) {
+            tab.params = params
+        }
+
         TabsActions.addTabs(tab)
         return { tabs: [tab] };
     },
@@ -29,7 +34,6 @@ var Tabs = React.createClass({
         //window.addEventListener('resize', this.handleResize);
     },
 
-
     componentWillUnmount:function()
     {
         TabsStore.unlisten(this._onChange);
@@ -40,8 +44,9 @@ var Tabs = React.createClass({
         var tabs = this.state.tabs;
 
         var tabLinks = tabs.map(function(tab,index) {
+
             return (<li key={tab.name}>
-                    <Link to={tab.link} >{tab.name}</Link>
+                    <Link to={tab.link} params={tab.params} >{tab.name}</Link>
                     </li>)
             })
 

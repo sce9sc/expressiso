@@ -19,13 +19,14 @@ var Iso = require('iso');
 var routes = React.createElement(
     Route,
     { name: 'home', path: '/', handler: App },
-    React.createElement(Route, { name: 'dashboard', path: 'dashboard', handler: require('react-router-proxy!./components/Pages/dashboard.jsx') }),
-    React.createElement(Route, { name: 'about', path: 'about', handler: require('react-router-proxy!./components/Pages/about.jsx') }),
-    React.createElement(Route, { name: 'table', path: 'table', handler: require('react-router-proxy!./components/Pages/table.jsx') }),
-    React.createElement(Route, { name: 'charts', path: 'charts', handler: require('react-router-proxy!./components/Pages/charts.jsx') }),
-    React.createElement(Route, { name: 'modal', path: 'modal', handler: require('react-router-proxy!./components/Pages/modal.jsx') }),
-    React.createElement(Route, { name: 'sortable', path: 'sortable', handler: require('react-router-proxy!./components/Pages/sortable.jsx') }),
-    React.createElement(DefaultRoute, { name: 'default', handler: require('react-router-proxy!./components/Pages/dashboard.jsx') }),
+    React.createElement(Route, { name: 'dashboard', path: '/dashboard', handler: require('react-router-proxy!./components/Pages/Dashboard/dashboard.jsx') }),
+    React.createElement(Route, { name: 'about', path: '/about', handler: require('react-router-proxy!./components/Pages/About/about.jsx') }),
+    React.createElement(Route, { name: 'aboutOverview', path: '/aboutOverview/:name', handler: require('react-router-proxy!./components/Pages/AboutOverview/aboutOverview.jsx') }),
+    React.createElement(Route, { name: 'table', path: '/table', handler: require('react-router-proxy!./components/Pages/table.jsx') }),
+    React.createElement(Route, { name: 'charts', path: '/charts', handler: require('react-router-proxy!./components/Pages/charts.jsx') }),
+    React.createElement(Route, { name: 'modal', path: '/modal', handler: require('react-router-proxy!./components/Pages/modal.jsx') }),
+    React.createElement(Route, { name: 'sortable', path: '/sortable', handler: require('react-router-proxy!./components/Pages/sortable.jsx') }),
+    React.createElement(DefaultRoute, { name: 'default', handler: require('react-router-proxy!./components/Pages/Dashboard/dashboard.jsx') }),
     React.createElement(NotFoundRoute, { handler: NotFound })
 );
 

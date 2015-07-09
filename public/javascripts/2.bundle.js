@@ -1,88 +1,196 @@
 webpackJsonp([2],{
 
-/***/ 237:
+/***/ 239:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(157);
+	var React = __webpack_require__(2);
+	var ReactRouter = __webpack_require__(177);
 	var Link = ReactRouter.Link;
-	var TabsActions = __webpack_require__(220);
+	//var TabsActions = require('../PageComponents/Tabs/tabsActions');
 
-	var AboutPage = React.createClass({
-	    displayName: 'AboutPage',
+	var DashBoardPage = React.createClass({
+	    displayName: "DashBoardPage",
 
-	    onLinkClick: function onLinkClick(link) {
-	        console.log(link);
-	        TabsActions.addTabs(link);
+	    timeoutFn: function timeoutFn() {
+	        this.setState({ data: "test" });
+	        this.setState({ display: true });
+	        console.log("loaded");
+	    },
+	    getInitialState: function getInitialState() {
+	        return { data: [], clicked: false, display: true };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        console.log("DashBoard-componentDidMount");
+
+	        //(this.timeoutFn,6000)
+	    },
+	    componentWillMount: function componentWillMount() {
+	        console.log("DashBoard-componentWillMount");
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	        //TabsActions.removeTabs({name:'dashboard'})
+	        console.log("DashBoard-componentWillUnmount");
+	    },
+	    handleClick: function handleClick(event) {
+	        this.setState({ clicked: !this.state.clicked });
 	    },
 	    render: function render() {
+	        var clicked = this.state.clicked ? "true" : "false";
+
+	        var displayContent = this.state.display ? "block" : "none";
+	        var displayLoading = this.state.display ? "none" : "block";
 	        return React.createElement(
-	            'div',
+	            "div",
 	            null,
 	            React.createElement(
-	                'section',
-	                { className: 'content-header' },
-	                React.createElement(
-	                    'h1',
-	                    null,
-	                    'About Page',
-	                    React.createElement(
-	                        'small',
-	                        null,
-	                        'it all starts here'
-	                    )
-	                )
+	                "div",
+	                { style: { "display": displayLoading } },
+	                "Loading Please Wait"
 	            ),
 	            React.createElement(
-	                'section',
-	                { className: 'content' },
+	                "div",
+	                { style: { "display": displayContent } },
 	                React.createElement(
-	                    'div',
-	                    null,
-	                    'sadad'
+	                    "section",
+	                    { className: "content-header" },
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "DashBoard",
+	                        React.createElement(
+	                            "small",
+	                            null,
+	                            "it all starts here"
+	                        )
+	                    )
 	                ),
 	                React.createElement(
-	                    'div',
-	                    { className: 'box' },
+	                    "section",
+	                    { className: "content" },
 	                    React.createElement(
-	                        'div',
-	                        { className: 'box-header with-border' },
+	                        "div",
+	                        { className: "row" },
 	                        React.createElement(
-	                            'h3',
-	                            { className: 'box-title' },
-	                            'Title'
+	                            "div",
+	                            { className: "col-md-4 col-sm-6 col-xs-12" },
+	                            React.createElement(
+	                                "div",
+	                                { className: "info-box" },
+	                                React.createElement(
+	                                    "span",
+	                                    { className: "info-box-icon bg-aqua" },
+	                                    React.createElement("i", { className: "ion ion-ios-gear-outline" })
+	                                ),
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "info-box-content" },
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "info-box-text" },
+	                                        "Offers"
+	                                    ),
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "info-box-number" },
+	                                        "9099"
+	                                    )
+	                                )
+	                            )
 	                        ),
 	                        React.createElement(
-	                            'div',
-	                            { className: 'box-tools pull-right' },
+	                            "div",
+	                            { className: "col-md-4 col-sm-6 col-xs-12" },
 	                            React.createElement(
-	                                'button',
-	                                { className: 'btn btn-box-tool', 'data-widget': 'collapse', 'data-toggle': 'tooltip', title: 'Collapse' },
-	                                React.createElement('i', { className: 'fa fa-minus' })
-	                            ),
+	                                "div",
+	                                { className: "info-box" },
+	                                React.createElement(
+	                                    "span",
+	                                    { className: "info-box-icon bg-red" },
+	                                    React.createElement("i", { className: "fa fa-google-plus" })
+	                                ),
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "info-box-content" },
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "info-box-text" },
+	                                        "Products"
+	                                    ),
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "info-box-number" },
+	                                        "41"
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement("div", { className: "clearfix visible-sm-block" }),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-4 col-sm-6 col-xs-12" },
 	                            React.createElement(
-	                                'button',
-	                                { className: 'btn btn-box-tool', 'data-widget': 'remove', 'data-toggle': 'tooltip', title: 'Remove' },
-	                                React.createElement('i', { className: 'fa fa-times' })
+	                                "div",
+	                                { className: "info-box" },
+	                                React.createElement(
+	                                    "span",
+	                                    { className: "info-box-icon bg-green" },
+	                                    React.createElement("i", { className: "fa fa-money" })
+	                                ),
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "info-box-content" },
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "info-box-text" },
+	                                        "Budget"
+	                                    ),
+	                                    React.createElement(
+	                                        "span",
+	                                        { className: "info-box-number" },
+	                                        "760"
+	                                    )
+	                                )
 	                            )
 	                        )
 	                    ),
 	                    React.createElement(
-	                        'div',
-	                        { className: 'box-body' },
-	                        'Start creating your amazing application!',
+	                        "div",
+	                        { className: "box" },
 	                        React.createElement(
-	                            Link,
-	                            { to: 'dashboard', onClick: this.onLinkClick.bind(this, { name: 'dashboard', link: '/dashboard' }) },
-	                            'Click me to go to dashboard'
+	                            "div",
+	                            { className: "box-header with-border" },
+	                            React.createElement(
+	                                "h3",
+	                                { className: "box-title" },
+	                                "Title"
+	                            ),
+	                            React.createElement(
+	                                "div",
+	                                { className: "box-tools pull-right" },
+	                                React.createElement(
+	                                    "button",
+	                                    { className: "btn btn-box-tool", "data-widget": "collapse", "data-toggle": "tooltip", title: "Collapse" },
+	                                    React.createElement("i", { className: "fa fa-minus" })
+	                                ),
+	                                React.createElement(
+	                                    "button",
+	                                    { className: "btn btn-box-tool", "data-widget": "remove", "data-toggle": "tooltip", title: "Remove" },
+	                                    React.createElement("i", { className: "fa fa-times" })
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "box-body" },
+	                            "Start creating your amazing application!"
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "box-footer" },
+	                            "Footer"
 	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'box-footer' },
-	                        'Footer'
 	                    )
 	                )
 	            )
@@ -90,7 +198,7 @@ webpackJsonp([2],{
 	    }
 	});
 
-	module.exports = AboutPage;
+	module.exports = DashBoardPage;
 
 /***/ }
 

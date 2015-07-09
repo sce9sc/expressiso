@@ -48,11 +48,17 @@ var menuBtns = [
         link:"sortable"
     }
 ]
-
+router.use('/AboutOverview/:name', function(req, res, next) {
+    // ... maybe some additional /bar logging ...
+    console.log(req.params.name)
+    req.data = {overview:{name:req.params.name}}
+    console.log("ended")
+    next();
+});
 
 /* GET home page. */
 router.get('*', function(req, res) {
-    console.log(req.url)
+    console.log(req.params)
    /* ReactRouter.run(routes,req.url,function(Handler){
         var markup = React.renderToString(React.createElement(Handler));
         res.render('index', {
@@ -64,7 +70,8 @@ router.get('*', function(req, res) {
 
 try {
     //console.log(Alt.default)
-    Alt.bootstrap(JSON.stringify({MenuStore:{menu:{active: "test",menuBtns:menuBtns}}}));
+    Alt.bootstrap(JSON.stringify({
+        MenuStore:{menu:{active: "test",menuBtns:menuBtns}}}));
     var iso = new Iso();
 
     var router = ReactRouter.create({location: req.url, routes: routes})

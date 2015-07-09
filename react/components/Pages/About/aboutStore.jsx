@@ -1,5 +1,5 @@
 import alt from '../../altInstance';
-import AboutActions from './actions/aboutActions'
+import AboutActions from './aboutActions'
 
 class AboutStore {
     constructor() {
@@ -7,16 +7,15 @@ class AboutStore {
             save: AboutActions.save,
             saveCurrent: AboutActions.saveCurrent
         })
-        this.about = {}
-
+        this.about = {current:{input:""}}
     }
 
-    save(tab){
+    save(data){
         this.about={};
     }
 
-    saveCurrent(tab) {
-
+    saveCurrent(data) {
+        this.about={current:data}
     }
 
 

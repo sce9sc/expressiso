@@ -1,196 +1,116 @@
 webpackJsonp([1],{
 
-/***/ 235:
+/***/ 159:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(157);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _aboutActions = __webpack_require__(160);
+
+	var _aboutActions2 = _interopRequireDefault(_aboutActions);
+
+	var _aboutStore = __webpack_require__(176);
+
+	var _aboutStore2 = _interopRequireDefault(_aboutStore);
+
+	var React = __webpack_require__(2);
+	var ReactRouter = __webpack_require__(177);
 	var Link = ReactRouter.Link;
-	var TabsActions = __webpack_require__(220);
+	var TabsActions = __webpack_require__(216);
 
-	var DashBoardPage = React.createClass({
-	    displayName: 'DashBoardPage',
+	var AboutPage = React.createClass({
+	    displayName: 'AboutPage',
 
-	    timeoutFn: function timeoutFn() {
-	        this.setState({ data: 'test' });
-	        this.setState({ display: true });
-	        console.log('loaded');
-	    },
 	    getInitialState: function getInitialState() {
-	        return { data: [], clicked: false, display: true };
+	        var aboutState = _aboutStore2['default'].getState();
+	        return {
+	            about: { current: aboutState.about.current }
+	        };
 	    },
-	    componentDidMount: function componentDidMount() {
-	        console.log('DashBoard-componentDidMount');
-
-	        //(this.timeoutFn,6000)
-	    },
-	    componentWillMount: function componentWillMount() {
-	        console.log('DashBoard-componentWillMount');
+	    onLinkClick: function onLinkClick(link) {
+	        console.log(link);
+	        TabsActions.addTabs(link);
 	    },
 	    componentWillUnmount: function componentWillUnmount() {
-	        //TabsActions.removeTabs({name:'dashboard'})
-	        console.log('DashBoard-componentWillUnmount');
+	        _aboutActions2['default'].saveCurrent(this.state.about.current);
 	    },
-	    handleClick: function handleClick(event) {
-	        this.setState({ clicked: !this.state.clicked });
+	    handleChange: function handleChange(event) {
+	        this.setState({ about: { current: { input: event.target.value } } });
+	    },
+	    onClose: function onClose() {
+	        this.setState({ about: { current: { input: '' } } });
 	    },
 	    render: function render() {
-	        var clicked = this.state.clicked ? 'true' : 'false';
 
-	        var displayContent = this.state.display ? 'block' : 'none';
-	        var displayLoading = this.state.display ? 'none' : 'block';
+	        var aboutCurrentData = this.state.about.current.input;
+	        console.log('dataAbout ' + aboutCurrentData);
 	        return React.createElement(
 	            'div',
 	            null,
 	            React.createElement(
-	                'div',
-	                { style: { 'display': displayLoading } },
-	                'Loading Please Wait'
+	                'section',
+	                { className: 'content-header' },
+	                React.createElement(
+	                    'h1',
+	                    null,
+	                    'About Page',
+	                    React.createElement(
+	                        'small',
+	                        null,
+	                        'it all starts here'
+	                    )
+	                )
 	            ),
 	            React.createElement(
-	                'div',
-	                { style: { 'display': displayContent } },
+	                'section',
+	                { className: 'content' },
 	                React.createElement(
-	                    'section',
-	                    { className: 'content-header' },
-	                    React.createElement(
-	                        'h1',
-	                        null,
-	                        'DashBoard',
-	                        React.createElement(
-	                            'small',
-	                            null,
-	                            'it all starts here'
-	                        )
-	                    )
+	                    'div',
+	                    null,
+	                    'sadad'
 	                ),
 	                React.createElement(
-	                    'section',
-	                    { className: 'content' },
+	                    'div',
+	                    { className: 'box' },
 	                    React.createElement(
 	                        'div',
-	                        { className: 'row' },
+	                        { className: 'box-header with-border' },
 	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-4 col-sm-6 col-xs-12' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'info-box' },
-	                                React.createElement(
-	                                    'span',
-	                                    { className: 'info-box-icon bg-aqua' },
-	                                    React.createElement('i', { className: 'ion ion-ios-gear-outline' })
-	                                ),
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'info-box-content' },
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'info-box-text' },
-	                                        'Offers'
-	                                    ),
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'info-box-number' },
-	                                        '9099'
-	                                    )
-	                                )
-	                            )
+	                            'h3',
+	                            { className: 'box-title' },
+	                            'Title'
 	                        ),
 	                        React.createElement(
 	                            'div',
-	                            { className: 'col-md-4 col-sm-6 col-xs-12' },
+	                            { className: 'box-tools pull-right' },
 	                            React.createElement(
-	                                'div',
-	                                { className: 'info-box' },
-	                                React.createElement(
-	                                    'span',
-	                                    { className: 'info-box-icon bg-red' },
-	                                    React.createElement('i', { className: 'fa fa-google-plus' })
-	                                ),
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'info-box-content' },
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'info-box-text' },
-	                                        'Products'
-	                                    ),
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'info-box-number' },
-	                                        '41'
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement('div', { className: 'clearfix visible-sm-block' }),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-4 col-sm-6 col-xs-12' },
+	                                'button',
+	                                { className: 'btn btn-box-tool', 'data-widget': 'collapse', 'data-toggle': 'tooltip', title: 'Collapse' },
+	                                React.createElement('i', { className: 'fa fa-minus' })
+	                            ),
 	                            React.createElement(
-	                                'div',
-	                                { className: 'info-box' },
-	                                React.createElement(
-	                                    'span',
-	                                    { className: 'info-box-icon bg-green' },
-	                                    React.createElement('i', { className: 'fa fa-money' })
-	                                ),
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'info-box-content' },
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'info-box-text' },
-	                                        'Budget'
-	                                    ),
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'info-box-number' },
-	                                        '760'
-	                                    )
-	                                )
+	                                'button',
+	                                { className: 'btn btn-box-tool', 'data-widget': 'remove', 'data-toggle': 'tooltip', title: 'Remove' },
+	                                React.createElement('i', { className: 'fa fa-times' })
 	                            )
 	                        )
 	                    ),
 	                    React.createElement(
 	                        'div',
-	                        { className: 'box' },
+	                        { className: 'box-body' },
+	                        React.createElement('input', { type: 'text', className: 'testInput', onChange: this.handleChange, value: aboutCurrentData }),
 	                        React.createElement(
-	                            'div',
-	                            { className: 'box-header with-border' },
-	                            React.createElement(
-	                                'h3',
-	                                { className: 'box-title' },
-	                                'Title'
-	                            ),
-	                            React.createElement(
-	                                'div',
-	                                { className: 'box-tools pull-right' },
-	                                React.createElement(
-	                                    'button',
-	                                    { className: 'btn btn-box-tool', 'data-widget': 'collapse', 'data-toggle': 'tooltip', title: 'Collapse' },
-	                                    React.createElement('i', { className: 'fa fa-minus' })
-	                                ),
-	                                React.createElement(
-	                                    'button',
-	                                    { className: 'btn btn-box-tool', 'data-widget': 'remove', 'data-toggle': 'tooltip', title: 'Remove' },
-	                                    React.createElement('i', { className: 'fa fa-times' })
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'box-body' },
-	                            'Start creating your amazing application!'
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'box-footer' },
-	                            'Footer'
+	                            Link,
+	                            { to: 'aboutOverview', params: { name: 'testParam' }, onClick: this.onLinkClick.bind(this, { name: 'aboutOverview', link: '/aboutOverview/:name', params: { name: 'testParam' } }) },
+	                            'Click me to go to dashboard'
 	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'box-footer' },
+	                        'Footer'
 	                    )
 	                )
 	            )
@@ -198,7 +118,89 @@ webpackJsonp([1],{
 	    }
 	});
 
-	module.exports = DashBoardPage;
+	module.exports = AboutPage;
+
+/***/ },
+
+/***/ 160:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _altInstance = __webpack_require__(161);
+
+	var _altInstance2 = _interopRequireDefault(_altInstance);
+
+	var AboutActions = function AboutActions() {
+	    _classCallCheck(this, AboutActions);
+
+	    this.generateActions('save', 'saveCurrent');
+	};
+
+	exports['default'] = _altInstance2['default'].createActions(AboutActions);
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 176:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _altInstance = __webpack_require__(161);
+
+	var _altInstance2 = _interopRequireDefault(_altInstance);
+
+	var _aboutActions = __webpack_require__(160);
+
+	var _aboutActions2 = _interopRequireDefault(_aboutActions);
+
+	var AboutStore = (function () {
+	    function AboutStore() {
+	        _classCallCheck(this, AboutStore);
+
+	        this.bindListeners({
+	            save: _aboutActions2['default'].save,
+	            saveCurrent: _aboutActions2['default'].saveCurrent
+	        });
+	        this.about = { current: { input: '' } };
+	    }
+
+	    _createClass(AboutStore, [{
+	        key: 'save',
+	        value: function save(data) {
+	            this.about = {};
+	        }
+	    }, {
+	        key: 'saveCurrent',
+	        value: function saveCurrent(data) {
+	            this.about = { current: data };
+	        }
+	    }]);
+
+	    return AboutStore;
+	})();
+
+	exports['default'] = _altInstance2['default'].createStore(AboutStore, 'AboutStore');
+	module.exports = exports['default'];
 
 /***/ }
 
